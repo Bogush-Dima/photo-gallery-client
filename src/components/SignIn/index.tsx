@@ -1,12 +1,14 @@
 import React from "react";
 import axios from "axios";
+import {Link} from "react-router-dom";
 import { Formik } from "formik";
 import {
   StyledForm,
   Button,
   FormWrapper,
   FormTitle,
-  FormInput
+  FormInput,
+  FormButton
 } from "../../main-styles-components";
 import { MainWrapper } from "./styled";
 
@@ -31,29 +33,34 @@ export const SignIn = () => {
       }}
     >
       {({ values, handleSubmit, handleChange }) => (
-        <FormWrapper>
-          <MainWrapper>
-            <FormTitle>Sign In</FormTitle>
-            <StyledForm onSubmit={handleSubmit}>
-              <FormInput
-                type="email"
-                name="email"
-                placeholder="Enter email"
-                onChange={handleChange}
-                value={values.email}
-                required
-              />
-              <FormInput
-                type="password"
-                name="password"
-                placeholder="Password"
-                onChange={handleChange}
-                value={values.password}
-              />
-              <Button type="submit">Sign In</Button>
-            </StyledForm>
-          </MainWrapper>
-        </FormWrapper>
+        <>
+          <Link to='/signUp'>
+            <Button>Sign Up</Button>
+          </Link>
+          <FormWrapper>
+            <MainWrapper>
+              <FormTitle>Sign In</FormTitle>
+              <StyledForm onSubmit={handleSubmit}>
+                <FormInput
+                  type="email"
+                  name="email"
+                  placeholder="Enter email"
+                  onChange={handleChange}
+                  value={values.email}
+                  required
+                />
+                <FormInput
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  onChange={handleChange}
+                  value={values.password}
+                />
+                <FormButton type="submit">Sign In</FormButton>
+              </StyledForm>
+            </MainWrapper>
+          </FormWrapper>
+        </>
       )}
     </Formik>
   );

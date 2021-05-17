@@ -6,9 +6,11 @@ import {
   Button,
   FormWrapper,
   FormTitle,
-  FormInput
+  FormInput,
+  FormButton
 } from "../../main-styles-components";
 import { MainWrapper } from "./styled";
+import { Link } from "react-router-dom";
 
 export const SignUp = () => {
   const createNewUser = (values: {}) => {
@@ -31,29 +33,34 @@ export const SignUp = () => {
       }}
     >
       {({ values, handleSubmit, handleChange }) => (
-        <FormWrapper>
-          <MainWrapper>
-            <FormTitle>Sign Up</FormTitle>
-            <StyledForm onSubmit={handleSubmit}>
-              <FormInput
-                type="email"
-                name="email"
-                placeholder="Enter email"
-                onChange={handleChange}
-                value={values.email}
-                required
-              />
-              <FormInput
-                type="password"
-                name="password"
-                placeholder="Password"
-                onChange={handleChange}
-                value={values.password}
-              />
-              <Button type="submit">Sign Up</Button>
-            </StyledForm>
-          </MainWrapper>
-        </FormWrapper>
+        <>
+          <Link to="/signIn">
+            <Button>Sign In</Button>
+          </Link>
+          <FormWrapper>
+            <MainWrapper>
+              <FormTitle>Sign Up</FormTitle>
+              <StyledForm onSubmit={handleSubmit}>
+                <FormInput
+                  type="email"
+                  name="email"
+                  placeholder="Enter email"
+                  onChange={handleChange}
+                  value={values.email}
+                  required
+                />
+                <FormInput
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  onChange={handleChange}
+                  value={values.password}
+                />
+                <FormButton type="submit">Sign Up</FormButton>
+              </StyledForm>
+            </MainWrapper>
+          </FormWrapper>
+        </>
       )}
     </Formik>
   );

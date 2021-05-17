@@ -60,17 +60,24 @@ export const FormInput = styled.input`
   }
 `
 
-export const Button = styled.button`
+export const FormButton = styled.button`
   background: #1f61a6;
   color: #ffffff;
   border: none;
   border-radius: 5px;
   font-size: 1.2rem;
   padding: 0.7rem 1.2rem;
+  min-width: 10rem;
   transition: 0.2s;
   
   &:hover {
     cursor: pointer;
     background: #1f61a6ab;
   }
+`
+
+export const Button = styled(FormButton)`
+  position: absolute;
+  right: 3rem;
+  top: 1.5rem;
 `
