@@ -10,7 +10,17 @@ export const GlobalStyle = createGlobalStyle`
   
   body {
     background: #cce4ff;
+  };
+  
+  li {
+    list-style: none;
   }
+`
+
+export const Title = styled.h1`
+  color: #4d9bf2;
+  text-align: center;
+  margin-bottom: 1.5rem;
 `
 
 export const FormWrapper = styled.div`
@@ -51,7 +61,7 @@ export const FormInput = styled.input`
 `
 
 export const Button = styled.button`
-  background: #090963;
+  background: #1f61a6;
   color: #ffffff;
   border: none;
   border-radius: 5px;
@@ -61,6 +71,6 @@ export const Button = styled.button`
   
   &:hover {
     cursor: pointer;
-    background: #090963b8;
+    background: #1f61a6ab;
   }
 `
