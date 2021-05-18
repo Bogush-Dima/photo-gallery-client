@@ -1,45 +1,34 @@
 import React from "react";
-import axios from "axios";
-import {Link} from "react-router-dom";
 import { Formik } from "formik";
+import { requestToServer } from "../../../actions/requestToServer";
+import { SIGN_IN, SIGN_UP } from "../../constants/paths";
 import {
   StyledForm,
   Button,
   FormWrapper,
   FormTitle,
   FormInput,
-  FormButton
-} from "../../main-styles-components";
+  FormButton,
+} from "../../main-styled-components";
 import { MainWrapper } from "./styled";
+import { Link } from "react-router-dom";
 
-export const SignIn = () => {
-  const createNewUser = (values: {}) => {
-    axios
-      .post("http://localhost:5000/api/auth/signIn", values)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-        console.log(err.response);
-      });
-  };
-
+export const SignUp = () => {
   return (
     <Formik
       initialValues={{ email: "", password: "" }}
       onSubmit={(values) => {
-        createNewUser(values);
+        requestToServer(SIGN_UP, values);
       }}
     >
       {({ values, handleSubmit, handleChange }) => (
         <>
-          <Link to='/signUp'>
-            <Button>Sign Up</Button>
+          <Link to={SIGN_IN}>
+            <Button>Sign In</Button>
           </Link>
           <FormWrapper>
             <MainWrapper>
-              <FormTitle>Sign In</FormTitle>
+              <FormTitle>Sign Up</FormTitle>
               <StyledForm onSubmit={handleSubmit}>
                 <FormInput
                   type="email"
@@ -56,7 +45,7 @@ export const SignIn = () => {
                   onChange={handleChange}
                   value={values.password}
                 />
-                <FormButton type="submit">Sign In</FormButton>
+                <FormButton type="submit">Sign Up</FormButton>
               </StyledForm>
             </MainWrapper>
           </FormWrapper>

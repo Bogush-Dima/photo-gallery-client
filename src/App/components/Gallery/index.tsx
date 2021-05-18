@@ -1,5 +1,5 @@
 import React from "react";
-import { Title } from "../../main-styles-components";
+import { Title } from "../../main-styled-components";
 import { MainWrapper, PhotosListWrapper, PhotosList, Photo } from "./styled";
 
 export const Gallery = () => {
