@@ -5,4 +5,5 @@ export interface Props {
   userFormik: FormikValues;
   authMethod: string;
   history: H.History;
+  setUser: (arg: string) => string;
 }

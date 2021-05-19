@@ -1,7 +1,8 @@
-import {RouteComponentProps} from "react-router-dom";
-import {FormikValues} from "formik";
+import * as H from "history/index";
+import { FormikValues } from "formik";
 
-export interface Args extends RouteComponentProps {
-    userFomik: FormikValues
-    authMethod: string
+export interface Args {
+  values: FormikValues;
+  authMethod: string;
+  history: H.History;
 }

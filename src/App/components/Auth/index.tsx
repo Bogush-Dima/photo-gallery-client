@@ -1,4 +1,4 @@
-import React, {FC, FormEvent} from "react";
+import React, { FC, FormEvent } from "react";
 import { Props } from "./types";
 import { SIGN_IN, SIGN_UP } from "../../constants/paths";
 import {
@@ -11,9 +11,14 @@ import {
 } from "../../main-styled-components";
 import { MainWrapper } from "./styled";
 import { Link } from "react-router-dom";
-import {requestToServer} from "../../../actions/requestToServer";
+import { requestToServer } from "../../../actions/requestToServer";
 
-export const Auth: FC<Props> = ({ history, userFormik, authMethod }) => {
+export const Auth: FC<Props> = ({
+  history,
+  userFormik,
+  authMethod,
+  setUser,
+}) => {
   const { handleChange, values } = userFormik;
 
   // TODO think about object name
@@ -62,9 +67,9 @@ export const Auth: FC<Props> = ({ history, userFormik, authMethod }) => {
   };
 
   const submitForm = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    requestToServer(authMethod, values, history)
-  }
+    event.preventDefault();
+    requestToServer(authMethod, values, history, setUser);
+  };
 
   const { linkTo, authMethodText, toOtherMethodText } = generateVariables();
 
