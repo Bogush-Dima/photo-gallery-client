@@ -1,25 +1,44 @@
-import React, { useEffect, useState } from "react";
-import { GALLERY, ROOT, SIGN_IN, SIGN_UP } from "../App/constants/paths";
-import { requestToServer } from "../actions/requestToServer";
+import React from "react";
+import { GALLERY, SIGN_IN, SIGN_UP } from "../App/constants/paths";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
-import { SignIn } from "../App/components/SignIn";
-import { SignUp } from "../App/components/SignUp";
+import { Auth } from "../App/components/Auth";
 import { Gallery } from "../App/components/Gallery";
+import { useFormik } from "formik";
 
 export const Router = () => {
-  const [user, setUser] = useState({});
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    requestToServer(ROOT, { token })
-  }, []);
-
+  const userFormik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
 
   return (
     <BrowserRouter>
       <Switch>
-        <Route path={SIGN_IN} component={SignIn} />
-        <Route path={SIGN_UP} component={SignUp} />
+        <Route
+          path={SIGN_IN}
+          render={({ history }) => (
+            <Auth
+              history={history}
+              userFormik={userFormik}
+              authMethod={SIGN_IN}
+            />
+          )}
+        />
+        <Route
+          path={SIGN_UP}
+          render={({ history }) => (
+            <Auth
+              history={history}
+              userFormik={userFormik}
+              authMethod={SIGN_UP}
+            />
+          )}
+        />
         <Route path={GALLERY} component={Gallery} />
         <Redirect to={SIGN_IN} />
       </Switch>
