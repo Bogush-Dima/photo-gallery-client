@@ -1,4 +1,4 @@
-import React, { SetStateAction } from "react";
+import React, { SetStateAction, useEffect } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import {
   GALLERY,
@@ -24,19 +24,20 @@ export const useRoutes = (user: any, setUser: SetStateAction<any>) => {
     },
   });
 
-  const token = localStorage.getItem("token");
-
-  if (!user && token) {
-    axios
-      .post(`${SERVER}${AUTH}${ROOT}`, { token })
-      .then((res) => {
-        const { userId, email } = res.data;
-        setUser({ userId, email });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!user && token) {
+      axios
+        .post(`${SERVER}${AUTH}${ROOT}`, { token })
+        .then((res) => {
+          const { userId, email } = res.data;
+          setUser({ userId, email });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, []);
 
   if (user) {
     return (
