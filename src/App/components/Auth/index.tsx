@@ -1,4 +1,4 @@
-import React, { FC, FormEvent } from "react";
+import React, { FC, FormEvent, useContext } from "react";
 import { Props } from "./types";
 import { SIGN_IN, SIGN_UP } from "../../constants/paths";
 import {
@@ -12,14 +12,11 @@ import {
 import { MainWrapper } from "./styled";
 import { Link } from "react-router-dom";
 import { requestToServer } from "../../../actions/requestToServer";
+import { UserContext } from "../../../utils/context";
 
-export const Auth: FC<Props> = ({
-  history,
-  userFormik,
-  authMethod,
-  setUser,
-}) => {
+export const Auth: FC<Props> = ({ history, userFormik, authMethod }) => {
   const { handleChange, values } = userFormik;
+  const { setUser } = useContext(UserContext);
 
   // TODO think about object name
 

@@ -1,42 +1,37 @@
-import React, { useState } from "react";
-import { Title } from "../../main-styled-components";
+import React, { useContext, useState } from "react";
+import { Title, Button } from "../../main-styled-components";
 import { MainWrapper, PhotosListWrapper, PhotosList, Photo } from "./styled";
-import axios from "axios";
-import { SERVER } from "../../constants/paths";
+import { UserContext } from "../../../utils/context";
+import { AddImageModal } from "./components/AddImageModal";
 
 export const Gallery = () => {
-  const [images, setImages] = useState([]);
-  const getImages = () => {
-    axios
-      .get(`${SERVER}/getImages`)
-      .then((res) => setImages(res.data.data.data))
-      .catch((err) => console.log(err));
+  const [isAddImage, setIsAddImage] = useState(false);
+  const { user } = useContext(UserContext);
+  const { gallery } = user;
+
+  const clickAddImage = () => {
+    setIsAddImage((prevState) => !prevState);
   };
 
-  let d = ''
-
-
-  if (images) {
-      // @ts-ignore
-      const a = Buffer.from(images)
-      d = a.toString('base64').replace(/(.)(.)/g, '$1$2 ')
-  }
-
   return (
-    <MainWrapper>
-      <Title>Gallery</Title>
-      <PhotosListWrapper>
-        <PhotosList>
-            <img src={d} alt='test' />
-          <Photo>Photo</Photo>
-          <Photo>Photo</Photo>
-          <Photo>Photo</Photo>
-          <Photo>Photo</Photo>
-          <Photo>Photo</Photo>
-          <Photo>Photo</Photo>
-        </PhotosList>
-      </PhotosListWrapper>
-      <button onClick={getImages}>GET IMAGES</button>
-    </MainWrapper>
+    <>
+      <MainWrapper>
+        <Button onClick={clickAddImage}>Add Image</Button>
+        <Title>Gallery</Title>
+        <PhotosListWrapper>
+          <PhotosList>
+            {gallery.map(({ _id, img }) => {
+              return (
+                <Photo
+                  key={_id}
+                  backgroundImage={`data:image/jpg;base64,${img}`}
+                />
+              );
+            })}
+          </PhotosList>
+        </PhotosListWrapper>
+      </MainWrapper>
+      <AddImageModal isAddImage={isAddImage} />
+    </>
   );
 };

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {PhotoProps} from "./types";
 
 export const MainWrapper = styled.div`
   margin: 2rem auto 0;
@@ -23,8 +24,10 @@ export const PhotosList = styled.ul`
   flex-wrap: wrap;
 `;
 
-export const Photo = styled.li`
-  background: yellow;
+export const Photo = styled.li<PhotoProps>`
+  background-image: ${props => `url(${props.backgroundImage})`};
+  background-size: cover;
+  background-position: center;
   height: 15rem;
   width: 15rem;
   border: 2px solid #cce4ff;
