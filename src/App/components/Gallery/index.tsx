@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Title, Button } from "../../main-styled-components";
 import { MainWrapper, PhotosListWrapper, PhotosList, Photo } from "./styled";
-import { UserContext } from "../../../utils/context";
+import { UserContext } from "../../../utils/contexts/user";
 import { AddImageModal } from "./components/AddImageModal";
 
 export const Gallery = () => {

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { useFormik } from "formik";
 import axios from "axios";
-import { UserContext } from "../../utils/context";
+import { UserContext } from "../../../../utils/contexts/user";
 import {
   GALLERY,
   SERVER,
@@ -10,9 +10,9 @@ import {
   ROOT,
   SIGN_IN,
   SIGN_UP,
-} from "../../App/constants/paths";
-import { Gallery } from "../../App/components/Gallery";
-import { Auth } from "../../App/components/Auth";
+} from "../../../../constants/paths";
+import { Gallery } from "../../Gallery";
+import { Auth } from "../../Auth";
 
 export const useRoutes = () => {
   const initialUserValue = {
@@ -20,7 +20,7 @@ export const useRoutes = () => {
     email: "",
     gallery: [
       {
-        img: [''],
+        img: '',
         _id: "",
       },
     ],

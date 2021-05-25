@@ -7,7 +7,7 @@ const initialValues: UserContextValues = {
     email: "",
     gallery: [
       {
-        img: [],
+        img: '',
         _id: "",
       },
     ],

@@ -1,6 +1,6 @@
 import React, { FC, FormEvent, useContext } from "react";
 import { Props } from "./types";
-import { SIGN_IN, SIGN_UP } from "../../constants/paths";
+import { SIGN_IN, SIGN_UP } from "../../../constants/paths";
 import {
   StyledForm,
   Button,
@@ -12,11 +12,13 @@ import {
 import { MainWrapper } from "./styled";
 import { Link } from "react-router-dom";
 import { requestToServer } from "../../../actions/requestToServer";
-import { UserContext } from "../../../utils/context";
+import { UserContext } from "../../../utils/contexts/user";
+import { LoaderContext } from "../../../utils/contexts/loader";
 
 export const Auth: FC<Props> = ({ history, userFormik, authMethod }) => {
   const { handleChange, values } = userFormik;
   const { setUser } = useContext(UserContext);
+  const { setIsLoading } = useContext(LoaderContext);
 
   // TODO think about object name
 
@@ -65,7 +67,7 @@ export const Auth: FC<Props> = ({ history, userFormik, authMethod }) => {
 
   const submitForm = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    requestToServer(authMethod, values, history, setUser);
+    requestToServer(authMethod, values, history, setUser, setIsLoading);
   };
 
   const { linkTo, authMethodText, toOtherMethodText } = generateVariables();
