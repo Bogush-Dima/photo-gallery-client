@@ -61,7 +61,7 @@ export const FormInput = styled.input`
 `
 
 export const FormButton = styled.button`
-  background: #1f61a6;
+  background: ${props => props.disabled ? 'gray' :  '#1f61a6'};
   color: #ffffff;
   border: none;
   border-radius: 5px;
@@ -71,8 +71,8 @@ export const FormButton = styled.button`
   transition: 0.2s;
   
   &:hover {
-    cursor: pointer;
-    background: #1f61a6ab;
+    cursor: ${props => props.disabled ? 'default' :  'pointer'};
+    background: ${props => props.disabled ? 'gray' :  '#1f61a6ab'};
   }
 `
 

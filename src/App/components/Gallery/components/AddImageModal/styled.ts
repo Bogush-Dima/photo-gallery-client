@@ -1,8 +1,9 @@
 import styled from "styled-components";
-import {WrapperProps} from "./types";
+import { WrapperProps } from "./types";
+import { Button, FormInput } from "../../../../main-styled-components";
 
 export const Wrapper = styled.div`
-  display: ${(props: WrapperProps) => props.isAddImage ? 'flex' : 'none'};
+  display: ${(props: WrapperProps) => (props.isAddImage ? "flex" : "none")};
   justify-content: center;
   align-items: center;
   position: absolute;
@@ -10,18 +11,19 @@ export const Wrapper = styled.div`
   left: 0;
   height: 100vh;
   width: 100vw;
-  background: rgba(128, 128, 128, 0.29);
-`
+  background: rgb(44 44 44 / 78%);
+`;
 
 export const Form = styled.form`
-  width: 50rem;
-  height: 35rem;
-  background: antiquewhite;
-  border-radius: 1rem;
+  width: 25rem;
+  height: 30rem;
+  background: #e6f2ff;
+  border-radius: 0.7rem;
+  padding: 1.5rem;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-`
+`;
 
 export const Label = styled.label`
   background: #1f61a6;
@@ -38,8 +40,38 @@ export const Label = styled.label`
     cursor: pointer;
     background: #1f61a6ab;
   }
-`
+`;
+
+export const FileNameInput = styled(FormInput)`
+  height: 7rem;
+  text-align: center;
+  padding: 0;
+  padding-right: 0.2rem;
+
+  &:last-of-type {
+    margin-bottom: 3rem;
+  }
+`;
+
+export const ButtonsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 export const Input = styled.input`
   display: none;
-`
+`;
+
+export const SubmitButton = styled(Button)`
+  position: inherit;
+  margin-top: 0.6rem;
+`;
+
+export const ResetButton = styled(SubmitButton)`
+  background: ${(props) => (props.disabled ? "gray" : "#b52323")};
+
+  &:hover {
+    cursor: ${props => props.disabled ? 'default' :  'pointer'};
+    background: ${props => props.disabled ? 'gray' :  '#b52323ad'};
+  }
+`;

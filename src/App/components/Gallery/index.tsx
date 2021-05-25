@@ -31,7 +31,7 @@ export const Gallery = () => {
           </PhotosList>
         </PhotosListWrapper>
       </MainWrapper>
-      <AddImageModal isAddImage={isAddImage} />
+      <AddImageModal isAddImage={isAddImage} setIsAddImage={setIsAddImage} />
     </>
   );
 };
