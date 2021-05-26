@@ -41,6 +41,12 @@ export const Photo = styled.li<PhotoProps>`
   align-items: center;
   justify-content: center;
   margin: 0.5rem;
+  transition: 0.1s ease-in-out;
+  
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+  }
 `;
 
 export const Empty = styled.div`

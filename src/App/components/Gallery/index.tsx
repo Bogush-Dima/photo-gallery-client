@@ -15,7 +15,6 @@ export const Gallery = () => {
   const [isAddImage, setIsAddImage] = useState(false);
   const { user } = useContext(UserContext);
   const { gallery } = user;
-  console.log(gallery);
 
   const clickAddImage = () => {
     setIsAddImage((prevState) => !prevState);
