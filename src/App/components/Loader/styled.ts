@@ -20,6 +20,7 @@ export const Wrapper = styled.div`
   background-color: #1a181bb8;
   display: grid;
   place-items: center;
+  z-index: 10;
 `;
 
 export const Container = styled.div`

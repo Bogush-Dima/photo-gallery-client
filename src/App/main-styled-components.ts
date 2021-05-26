@@ -10,6 +10,7 @@ export const GlobalStyle = createGlobalStyle`
   
   body {
     background: #cce4ff;
+    z-index: 1;
   };
   
   li {

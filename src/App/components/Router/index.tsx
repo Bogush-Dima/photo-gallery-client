@@ -6,7 +6,7 @@ import { Loader } from "../Loader";
 
 export const Router = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const router = useRoutes();
+  const router = useRoutes(isLoading, setIsLoading);
 
   return (
     <BrowserRouter>

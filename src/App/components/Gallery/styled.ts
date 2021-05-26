@@ -37,3 +37,12 @@ export const Photo = styled.li<PhotoProps>`
   justify-content: center;
   margin: 0.5rem;
 `;
+
+export const Empty = styled.div`
+  height: 80vh;
+  color: #4d9bf270;
+  font-size: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`

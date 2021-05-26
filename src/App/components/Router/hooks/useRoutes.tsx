@@ -1,4 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, {
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { useFormik } from "formik";
 import axios from "axios";
@@ -14,13 +19,16 @@ import {
 import { Gallery } from "../../Gallery";
 import { Auth } from "../../Auth";
 
-export const useRoutes = () => {
+export const useRoutes = (
+  isLoading: boolean,
+  setIsLoading: Dispatch<SetStateAction<boolean>>
+) => {
   const initialUserValue = {
     id: "",
     email: "",
     gallery: [
       {
-        img: '',
+        img: "",
         _id: "",
       },
     ],
@@ -40,17 +48,20 @@ export const useRoutes = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!user.id && token) {
+      setIsLoading(true);
       axios
         .post(`${SERVER}${AUTH}${ROOT}`, { token })
         .then((res) => {
           const { id, email, gallery } = res.data;
+          setIsLoading(false);
           setUser({ id, email, gallery });
         })
         .catch((err) => {
+          setIsLoading(false);
           console.log(err);
         });
     }
-  }, [user]);
+  }, [user, setIsLoading]);
 
   if (user.id) {
     return (
