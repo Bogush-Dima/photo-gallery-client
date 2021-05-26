@@ -1,3 +1,6 @@
+import {MouseEventHandler} from "react";
+
 export interface PhotoProps {
-    backgroundImage: string;
+  backgroundImage: string;
+  onClick: MouseEventHandler<HTMLLIElement>;
 }
