@@ -1,68 +1,41 @@
 import React, { FC, FormEvent, useContext } from "react";
 import { Props } from "./types";
-import { SIGN_IN, SIGN_UP } from "../../../constants/paths";
 import {
   StyledForm,
   Button,
   FormWrapper,
   FormTitle,
   FormInput,
-  FormButton,
 } from "../../main-styled-components";
 import { MainWrapper } from "./styled";
-import { Link } from "react-router-dom";
 import { requestToServer } from "../../../actions/requestToServer";
 import { UserContext } from "../../../utils/contexts/user";
 import { LoaderContext } from "../../../utils/contexts/loader";
+import { Header } from "../Header";
 
 export const Auth: FC<Props> = ({ history, userFormik, authMethod }) => {
   const { handleChange, values } = userFormik;
   const { setUser } = useContext(UserContext);
   const { setIsLoading } = useContext(LoaderContext);
 
-  // TODO think about object name
+  const formattingLinkToText = (link: string) => {
+    let result: string = "";
+    let intervalValue = link.slice(1);
 
-  const generateVariables = () => {
-    const formattingLinkToText = (link: string) => {
-      let result: string = "";
-      let intervalValue = link.slice(1);
-
-      for (let i = 0; i < intervalValue.length; i++) {
-        if (i === 0) {
-          result += intervalValue[i].toUpperCase();
-          intervalValue = intervalValue.slice(1);
-        }
-
-        if (intervalValue[i] === intervalValue[i].toUpperCase()) {
-          result += intervalValue.replace(
-            intervalValue[i],
-            ` ${intervalValue[i]}`
-          );
-        }
+    for (let i = 0; i < intervalValue.length; i++) {
+      if (i === 0) {
+        result += intervalValue[i].toUpperCase();
+        intervalValue = intervalValue.slice(1);
       }
-      return result;
-    };
 
-    switch (authMethod) {
-      case SIGN_IN:
-        return {
-          linkTo: SIGN_UP,
-          authMethodText: formattingLinkToText(SIGN_IN),
-          toOtherMethodText: formattingLinkToText(SIGN_UP),
-        };
-      case SIGN_UP:
-        return {
-          linkTo: SIGN_IN,
-          authMethodText: formattingLinkToText(SIGN_UP),
-          toOtherMethodText: formattingLinkToText(SIGN_IN),
-        };
-      default:
-        return {
-          linkTo: "",
-          authMethodText: "",
-          toOtherMethodText: "",
-        };
+      if (intervalValue[i] === intervalValue[i].toUpperCase()) {
+        result += intervalValue.replace(
+          intervalValue[i],
+          ` ${intervalValue[i]}`
+        );
+      }
     }
+    return result;
   };
 
   const submitForm = (event: FormEvent<HTMLFormElement>) => {
@@ -70,13 +43,11 @@ export const Auth: FC<Props> = ({ history, userFormik, authMethod }) => {
     requestToServer(authMethod, values, history, setUser, setIsLoading);
   };
 
-  const { linkTo, authMethodText, toOtherMethodText } = generateVariables();
+  const authMethodText = formattingLinkToText(authMethod);
 
   return (
     <>
-      <Link to={linkTo}>
-        <Button>{toOtherMethodText}</Button>
-      </Link>
+      <Header />
       <FormWrapper>
         <MainWrapper>
           <FormTitle>{authMethodText}</FormTitle>
@@ -96,7 +67,7 @@ export const Auth: FC<Props> = ({ history, userFormik, authMethod }) => {
               onChange={handleChange}
               value={values.password}
             />
-            <FormButton type="submit">{authMethodText}</FormButton>
+            <Button type="submit">{authMethodText}</Button>
           </StyledForm>
         </MainWrapper>
       </FormWrapper>

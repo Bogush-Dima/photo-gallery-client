@@ -28,7 +28,7 @@ export const FormWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: 90vh;
 `
 
 export const FormTitle = styled.h1`
@@ -61,7 +61,7 @@ export const FormInput = styled.input`
   }
 `
 
-export const FormButton = styled.button`
+export const Button = styled.button`
   background: ${props => props.disabled ? 'gray' :  '#1f61a6'};
   color: #ffffff;
   border: none;
@@ -75,10 +75,4 @@ export const FormButton = styled.button`
     cursor: ${props => props.disabled ? 'default' :  'pointer'};
     background: ${props => props.disabled ? 'gray' :  '#1f61a6ab'};
   }
-`
-
-export const Button = styled(FormButton)`
-  position: absolute;
-  right: 3rem;
-  top: 1.5rem;
 `

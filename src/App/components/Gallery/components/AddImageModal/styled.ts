@@ -6,12 +6,13 @@ export const Wrapper = styled.div`
   display: ${(props: WrapperProps) => (props.isAddImage ? "flex" : "none")};
   justify-content: center;
   align-items: center;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   background: rgb(44 44 44 / 78%);
+  cursor: pointer;
 `;
 
 export const Form = styled.form`
