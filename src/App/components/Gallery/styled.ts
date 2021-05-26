@@ -41,11 +41,12 @@ export const Photo = styled.li<PhotoProps>`
   align-items: center;
   justify-content: center;
   margin: 0.5rem;
-  transition: 0.1s ease-in-out;
+  transition: 0.1s all ease-in-out;
   
   &:hover {
     cursor: pointer;
     transform: scale(1.05);
+    opacity: 0.6;
   }
 `;
 
